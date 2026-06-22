@@ -1,0 +1,23 @@
+# Web framework — defines routes and the HTTP API
+fastapi
+
+# ASGI server that actually runs the FastAPI app ([standard] adds reload + speedups)
+uvicorn[standard]
+
+# ORM — lets us define DB tables as Python classes and query them without raw SQL
+sqlalchemy
+
+# PostgreSQL driver — how SQLAlchemy actually talks to Postgres ([binary] = no compiler needed)
+psycopg[binary]
+
+# Database migrations — versioned, repeatable schema changes
+alembic
+
+# Loads variables from the .env file into the app at startup
+python-dotenv
+
+# Test framework
+pytest
+
+# HTTP client — used by tests to call our own API endpoints
+httpx
