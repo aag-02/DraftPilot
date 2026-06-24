@@ -38,10 +38,10 @@
 - [x] Verify `GET /health` returns the DB value (browser / curl)
 
 ## Stage 3 — Frontend (Next.js)
-- [ ] `npx create-next-app@latest web --typescript --app` in `apps/`
-- [ ] `app/page.tsx` fetches `GET /health` and renders the value
-- [ ] Generate TypeScript types from the API's OpenAPI spec
-- [ ] Verify: `npm run dev` → browser page shows the value from Postgres
+- [x] `npx create-next-app@latest web --typescript --app` in `apps/`
+- [x] `app/page.tsx` fetches `GET /health` and renders the value
+- [x] Generate TypeScript types from the API's OpenAPI spec (via `openapi-typescript` → `lib/api-types.ts`; backend uses a `HealthResponse` Pydantic model)
+- [x] Verify: `npm run dev` → browser page shows the value from Postgres
 
 ## Stage 4 — Containerize (Docker Compose)
 - [ ] `apps/api/Dockerfile`
