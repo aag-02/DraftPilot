@@ -1,0 +1,50 @@
+name: CI
+
+# Run on every push to main and on every pull request.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+
+    # A throwaway Postgres for the tests to talk to.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: draftpilot
+          POSTGRES_PASSWORD: draftpilot
+          POSTGRES_DB: draftpilot_test
+        ports:
+          - 5432:5432
+        # Wait until Postgres is ready before running steps.
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    defaults:
+      run:
+        working-directory: apps/api
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        env:
+          TEST_DATABASE_URL: postgresql+psycopg://draftpilot:draftpilot@localhost:5432/draftpilot_test
+        run: pytest -v
