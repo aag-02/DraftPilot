@@ -1,23 +1,26 @@
+# Pinned to exact versions for reproducible builds (same versions in dev, CI, and prod).
+# Update deliberately, then re-test.
+
 # Web framework — defines routes and the HTTP API
-fastapi
+fastapi==0.138.0
 
 # ASGI server that actually runs the FastAPI app ([standard] adds reload + speedups)
-uvicorn[standard]
+uvicorn[standard]==0.49.0
 
 # ORM — lets us define DB tables as Python classes and query them without raw SQL
-sqlalchemy
+sqlalchemy==2.0.51
 
 # PostgreSQL driver — how SQLAlchemy actually talks to Postgres ([binary] = no compiler needed)
-psycopg[binary]
+psycopg[binary]==3.3.4
 
 # Database migrations — versioned, repeatable schema changes
-alembic
+alembic==1.18.4
 
 # Loads variables from the .env file into the app at startup
-python-dotenv
+python-dotenv==1.2.2
 
 # Test framework
-pytest
+pytest==9.1.1
 
 # HTTP client — used by tests to call our own API endpoints
-httpx
+httpx==0.28.1

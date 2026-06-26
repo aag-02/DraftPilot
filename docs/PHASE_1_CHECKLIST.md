@@ -44,11 +44,11 @@
 - [x] Verify: `npm run dev` → browser page shows the value from Postgres
 
 ## Stage 4 — Containerize (Docker Compose)
-- [ ] `apps/api/Dockerfile`
-- [ ] `apps/web/Dockerfile`
-- [ ] Root `docker-compose.yml` with 4 services: `db`, `redis`, `api`, `web`
-- [ ] Run migrations on API startup
-- [ ] Verify: `docker compose up --build` → whole stack runs, browser page works, **zero** manual steps
+- [x] `apps/api/Dockerfile` (+ `.dockerignore`)
+- [x] `apps/web/Dockerfile` (+ `.dockerignore`)
+- [x] Root `docker-compose.yml` with 4 services: `db`, `redis`, `api`, `web` (creds via root `.env` substitution)
+- [x] Run migrations on API startup (`alembic upgrade head` in the api `command`, gated on db healthcheck)
+- [x] Verify: `docker compose up --build` → whole stack runs, page renders from containers, **zero** manual steps
 
 ## Stage 5 — Tests + CI
 - [ ] `apps/api/tests/test_health.py` (hits `/health`, asserts 200 + value)
