@@ -51,10 +51,11 @@
 - [x] Verify: `docker compose up --build` → whole stack runs, page renders from containers, **zero** manual steps
 
 ## Stage 5 — Tests + CI
-- [ ] `apps/api/tests/test_health.py` (hits `/health`, asserts 200 + value)
-- [ ] `pytest` passes locally
-- [ ] `.github/workflows/ci.yml` (Postgres service, lint + pytest on PR)
-- [ ] Open a PR, CI runs green
+- [x] `apps/api/tests/test_health.py` (hits `/health`, asserts 200 + value; isolated test DB via fixtures)
+- [x] `pytest` passes locally
+- [x] `.github/workflows/ci.yml` (Postgres service, pytest on push/PR)
+- [x] Open a PR, CI runs green
+- [~] Require CI status check in branch protection _(needs public repo to enforce on free plan)_
 - [ ] Add CI badge to `README.md`
 
 ## Stage 6 — Documentation
