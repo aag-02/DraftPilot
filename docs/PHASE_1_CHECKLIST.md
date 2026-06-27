@@ -55,20 +55,20 @@
 - [x] `pytest` passes locally
 - [x] `.github/workflows/ci.yml` (Postgres service, pytest on push/PR)
 - [x] Open a PR, CI runs green
-- [~] Require CI status check in branch protection _(needs public repo to enforce on free plan)_
-- [ ] Add CI badge to `README.md`
+- [x] Require CI status check in branch protection (rule active; enable "do not allow bypassing" for full enforcement)
+- [x] Add CI badge to `README.md`
 
 ## Stage 6 — Documentation
-- [ ] `docs/decisions/0001-stack.md` — first ADR (why FastAPI + Next.js + Postgres + Redis)
-- [ ] Update `README.md` (what it is, how to run it)
+- [x] `docs/decisions/0001-stack.md` — first ADR (why FastAPI + Next.js + Postgres + Redis)
+- [x] Update `README.md` (what it is, how to run it)
 
 ---
 
-## ✅ Phase 1 is COMPLETE when
-- [ ] `docker compose up` → all 4 services, zero manual steps
-- [ ] Browser shows a value round-tripped from Postgres
-- [ ] `alembic upgrade head` builds schema from scratch
-- [ ] `pytest` passes (incl. the `/health` test)
-- [ ] A PR triggers CI, badge is green
-- [ ] Frontend's API call is typed from OpenAPI
-- [ ] `0001-stack.md` exists
+## ✅ Phase 1 is COMPLETE
+- [x] `docker compose up` → all 4 services, zero manual steps
+- [x] Browser shows a value round-tripped from Postgres
+- [x] `alembic upgrade head` builds schema from scratch
+- [x] `pytest` passes (incl. the `/health` test)
+- [x] A PR triggers CI, badge is green
+- [x] Frontend's API call is typed from OpenAPI
+- [x] `0001-stack.md` exists
