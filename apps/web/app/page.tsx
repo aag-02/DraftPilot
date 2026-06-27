@@ -6,8 +6,11 @@ export default async function Home() {
   let data: HealthResponse | null = null;
   let error: string | null = null;
 
+  // Use API_BASE_URL when set (Docker: http://api:8000); fall back to localhost for native dev.
+  const apiBase = process.env.API_BASE_URL ?? "http://localhost:8000";
+
   try {
-    const res = await fetch("http://localhost:8000/health", {
+    const res = await fetch(`${apiBase}/health`, {
       cache: "no-store",
     });
     data = await res.json();

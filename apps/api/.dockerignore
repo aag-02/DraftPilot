@@ -1,0 +1,15 @@
+# Don't copy these into the image (COPY . . will skip them)
+
+# Python virtual environment (huge, and rebuilt inside the image anyway)
+.venv/
+
+# Secrets — never bake these into an image
+.env
+
+# Python caches / compiled files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS / editor cruft
+.DS_Store

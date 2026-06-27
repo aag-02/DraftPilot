@@ -1,0 +1,15 @@
+# Don't copy these into the image
+
+# Installed dependencies (the image runs its own `npm ci`)
+node_modules/
+
+# Build output (the image runs its own `npm run build`)
+.next/
+
+# Secrets / local env
+.env
+.env.*
+
+# OS / logs
+.DS_Store
+npm-debug.log*

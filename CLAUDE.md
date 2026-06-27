@@ -32,11 +32,35 @@ check (no `.env`, no `.venv`, no secrets in the diff) and show what will be comm
 
 ## The build plan
 
-We follow `docs/PHASE_1_CHECKLIST.md` (the Walking Skeleton), staged: repo → backend
-(FastAPI+Postgres) → migrations (Alembic) → frontend (Next.js) → Docker → tests/CI → docs.
-The big-picture vision and phase order live in `docs/DraftPilot_Project_Overview.md`. The
-overarching principle from that doc: build the spine end-to-end first, then sharpen each piece;
-ML/intelligence comes late, after the product exists.
+`docs/PHASE_1_CHECKLIST.md` (the Walking Skeleton) and `docs/DraftPilot_Project_Overview.md`
+are a **rough guide, not gospel.** The plan is flexible and we deviate whenever it makes sense
+for Arya. Use the docs as a loose map and for big-picture direction — do NOT treat them as fixed
+requirements or keep citing "your doc says X" to justify decisions. Reason from what's actually
+best for the project and Arya's learning right now; if that means departing from the doc, do it
+and just say so. Suggest deviations proactively when a better path exists.
+
+The loose shape so far: repo → backend (FastAPI+Postgres) → migrations (Alembic) → frontend
+(Next.js) → Docker → tests/CI → docs. One genuinely useful principle worth keeping: build the
+spine end-to-end first, then sharpen each piece; ML/intelligence comes late, after the product
+exists. Everything else is negotiable.
+
+## Build it like production at a company
+
+Arya wants to learn real software-engineering principles by treating this as if it were a
+**production system at a company**, not a toy/learning shortcut. This is a core goal — favor the
+professional pattern even when a quicker hack would work for a local project, and explain *why*
+it's the production-grade choice.
+
+Apply this throughout:
+- **No secrets/credentials in committed files** — ever. Use env vars + gitignored `.env`
+  (with a committed `.env.example` documenting the keys). Treat every credential as if it
+  protected real infrastructure.
+- **Config comes from the environment**, not hardcoded — so the same code runs in dev/staging/prod
+  by changing config only.
+- **Boundaries, tests, migrations, reproducibility, observability** are the default, not optional.
+- When there's a "works for local" way and a "how a company would actually do it" way, pick the
+  latter and call out the difference. Point out where a real prod setup would go further (secrets
+  managers, least-privilege, zero-downtime migrations, etc.) even if we don't build it now.
 
 ## Project conventions
 
@@ -48,3 +72,14 @@ ML/intelligence comes late, after the product exists.
 - Boundaries matter (from the overview doc): routes do HTTP, `db.py` owns connections,
   models/repos own data access, services own business logic.
 - Leave the VS Code Python interpreter picker alone — selecting a path once deleted the venv.
+- Frontend is **Next.js 16** (App Router) — newer than training defaults and has breaking changes.
+  Before writing frontend code, check the bundled docs at `apps/web/node_modules/next/dist/docs/`
+  rather than relying on memory. Server Components fetch data via `async/await`; `fetch` is not
+  cached by default.
+
+## Maintaining this file
+
+Keep this file updated yourself when genuinely useful, durable info emerges (a hard-won gotcha, a
+settled convention, a workflow preference) — without asking each time. Bias toward NOT bloating it:
+only add things that will save real time later. Prefer editing/condensing existing lines over
+appending new ones; remove anything that becomes stale.
