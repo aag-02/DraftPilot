@@ -46,5 +46,8 @@ jobs:
 
       - name: Run tests
         env:
+          # db.py reads DATABASE_URL on import; in CI there is no .env file,
+          # so we provide it here (points at the same throwaway test DB).
+          DATABASE_URL: postgresql+psycopg://draftpilot:draftpilot@localhost:5432/draftpilot_test
           TEST_DATABASE_URL: postgresql+psycopg://draftpilot:draftpilot@localhost:5432/draftpilot_test
         run: pytest -v
